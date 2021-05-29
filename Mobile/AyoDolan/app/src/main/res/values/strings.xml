@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ayo Dolan!</string>
+    <string name="pantai">Pantai</string>
+    <string name="gunung">Gunung</string>
+    <string name="taman">Taman</string>
+    <string name="cagar_budaya">Cagar Budaya</string>
+    <string name="itemgambar">itemGambar</string>
+    <string name="title">title</string>
+    <string name="lokasi">lokasi</string>
+</resources>
