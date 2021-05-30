@@ -1,9 +1,12 @@
 package com.dicoding.capstone.ayodolan.ui
 
+import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.capstone.ayodolan.R
@@ -21,33 +24,37 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val data = intent.getParcelableExtra<VacationEntity>(EXTRA_KEY) as VacationEntity
-
-        Log.e("Detail", "${data.title}")
-
-        binding.toolBar.title = data?.title
-
+        binding.toolBar.title = data.title
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        /*val bitmap = BitmapFactory.decodeResource(resources, R.drawable.beach)
-        Palette.from(bitmap).generate{palete ->
-        if (palete != null){
-            binding.collapsLayout.setContentScrimColor(palete.getMutedColor(R.attr.colorPrimary))
-        }
-        }*/
+        showDetail(data)
 
+    }
+
+    fun showDetail(data :VacationEntity){
         Glide.with(this)
-            .load(data?.image)
+            .load("https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.image}")
             .apply(RequestOptions.placeholderOf(R.drawable.ic_baseline_refresh).error(R.drawable.ic_baseline_broken_image_24))
             .into(binding.imageDetail)
 
-        binding.content.starRating.rating = data?.rating.toFloat()
-        binding.content.rating.text = data?.rating
-        binding.content.textLocation.text = data.location
-        binding.content.textDesc.text = data.description
-    }
+        with(binding){
+            content.starRating.rating = data.rating.toFloat()
+            content.rating.text = data.rating
+            content.textLocation.text = data.location
+            content.textDesc.text = data.description
 
-    fun viewData(vacation :VacationEntity){
+            share.setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TITLE, data.title)
+                    putExtra(Intent.EXTRA_TEXT,"Rating:${data.rating} \n ${data.description}")
+                    type = "text/plain"
+                }
+                startActivity(sendIntent)
+            }
+        }
+
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
