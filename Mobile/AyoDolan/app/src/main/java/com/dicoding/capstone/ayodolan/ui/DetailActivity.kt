@@ -7,7 +7,7 @@ import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.capstone.ayodolan.R
-import com.dicoding.capstone.ayodolan.core.data.entity.BeachEntity
+import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
 import com.dicoding.capstone.ayodolan.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val data = intent.getParcelableExtra<BeachEntity>(EXTRA_KEY) as BeachEntity
+        val data = intent.getParcelableExtra<VacationEntity>(EXTRA_KEY) as VacationEntity
 
         Log.e("Detail", "${data.title}")
 
@@ -47,7 +47,7 @@ class DetailActivity : AppCompatActivity() {
         binding.content.textDesc.text = data.description
     }
 
-    fun viewData(vacation :BeachEntity){
+    fun viewData(vacation :VacationEntity){
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

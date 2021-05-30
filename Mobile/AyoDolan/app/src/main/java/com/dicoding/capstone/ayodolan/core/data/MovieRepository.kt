@@ -2,7 +2,7 @@ package com.dicoding.capstone.ayodolan.core.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.capstone.ayodolan.core.data.entity.BeachEntity
+import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
 import com.dicoding.capstone.ayodolan.core.data.source.remote.RemoteDataSource
 import com.dicoding.capstone.ayodolan.core.data.source.remote.response.ResultsItem
 
@@ -18,14 +18,14 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
             }
     }
 
-    override fun getMoviePopuler(): LiveData<List<BeachEntity>> {
-        val movieResult = MutableLiveData<List<BeachEntity>>()
+    override fun getMoviePopuler(): LiveData<List<VacationEntity>> {
+        val movieResult = MutableLiveData<List<VacationEntity>>()
         remoteDataSource.getMoviePopular(object : RemoteDataSource.LoadDataCallback{
             override fun onAllDataReceived(dataResponse: List<ResultsItem>) {
 
-                val movieList = ArrayList<BeachEntity>()
+                val movieList = ArrayList<VacationEntity>()
                 for (movieRespons in dataResponse){
-                    val beachEntity = BeachEntity(
+                    val beachEntity = VacationEntity(
                         movieRespons.id.toString(),
                         movieRespons.title,
                         movieRespons.originalTitle,
@@ -44,14 +44,14 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         return movieResult
     }
 
-    override fun getMovieRate(): LiveData<List<BeachEntity>> {
-        val movieResult = MutableLiveData<List<BeachEntity>>()
+    override fun getMovieRate(): LiveData<List<VacationEntity>> {
+        val movieResult = MutableLiveData<List<VacationEntity>>()
         remoteDataSource.getMovieTopRated(object : RemoteDataSource.LoadDataCallback{
             override fun onAllDataReceived(dataResponse: List<ResultsItem>) {
 
-                val movieList = ArrayList<BeachEntity>()
+                val movieList = ArrayList<VacationEntity>()
                 for (movieRespons in dataResponse){
-                    val beachEntity = BeachEntity(
+                    val beachEntity = VacationEntity(
                         movieRespons.id.toString(),
                         movieRespons.title,
                         movieRespons.originalTitle,

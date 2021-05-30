@@ -1,10 +1,10 @@
 package com.dicoding.capstone.ayodolan.core.data
 
 import androidx.lifecycle.LiveData
-import com.dicoding.capstone.ayodolan.core.data.entity.BeachEntity
+import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
 
 interface MovieDataSource {
-    fun getMoviePopuler(): LiveData<List<BeachEntity>>
+    fun getMoviePopuler(): LiveData<List<VacationEntity>>
 
-    fun getMovieRate(): LiveData<List<BeachEntity>>
+    fun getMovieRate(): LiveData<List<VacationEntity>>
 }
