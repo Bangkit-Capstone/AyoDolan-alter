@@ -11,4 +11,6 @@
     <color name="abu">#FBF6F6</color>
     <color name="yellow">#FFC107</color>
     <color name="dark">#C6000000</color>
+    <color name="transparent">#B3FFFFFF</color>
+    <color name="litle_dark">#7F000000</color>
 </resources>

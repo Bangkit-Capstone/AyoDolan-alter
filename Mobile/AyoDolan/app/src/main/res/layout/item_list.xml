@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -30,7 +29,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#7F000000"
+            android:background="@color/litle_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +63,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/star_rate"
             app:layout_constraintBottom_toTopOf="@+id/item_title"
-            android:layout_marginLeft="3dp"
-            android:text="5.00"
+            android:layout_marginStart="3dp"
+            android:text="@string/_5_00"
             android:textSize="12sp"
             android:textColor="@color/white"/>
 
@@ -76,7 +75,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="#FFFFFFFF"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/item_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +89,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#B3FFFFFF"
+            android:textColor="@color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/item_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

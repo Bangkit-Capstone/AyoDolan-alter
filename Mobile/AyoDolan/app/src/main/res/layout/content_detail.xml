@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="4.5"
+            android:text="@string/_5_00"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/star_rating"
@@ -44,7 +44,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_height="wrap_content"
-            android:text="text_location"
+            android:text="@string/lokasi"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@+id/star_rating"
             app:layout_constraintTop_toBottomOf="@+id/star_rating"/>
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Description :"
+            android:text="@string/description"
             android:layout_marginStart="16dp"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -73,7 +73,6 @@
             app:layout_constraintLeft_toLeftOf="@+id/desc"
             app:layout_constraintTop_toBottomOf="@+id/desc"
             />
-
         <TextView
             android:id="@+id/review"
             android:layout_width="wrap_content"
@@ -83,7 +82,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:text="Review : "
+            android:text="@string/review_dtl"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"/>

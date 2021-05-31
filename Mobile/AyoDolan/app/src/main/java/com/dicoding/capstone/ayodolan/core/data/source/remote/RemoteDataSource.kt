@@ -35,7 +35,6 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 Log.e(TAG,"${t.message}")
             }
-
         })
     }
 
@@ -47,15 +46,12 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
                     response.body()?.results?.let { callback.onAllDataReceived(it) }
                 }
             }
-
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 Log.e(TAG,"${t.message}")
             }
 
         })
     }
-
-
 
     interface LoadDataCallback{
         fun onAllDataReceived(dataResponse: List<ResultsItem>)
