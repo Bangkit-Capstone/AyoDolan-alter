@@ -10,5 +10,6 @@ data class VacationEntity (
     val location :String,
     val description :String,
     val image :String,
-    val rating :String
+    val rating :String,
+    var message : String? = null
     ) : Parcelable

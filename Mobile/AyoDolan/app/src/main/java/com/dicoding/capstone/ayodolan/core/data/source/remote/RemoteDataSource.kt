@@ -1,5 +1,6 @@
 package com.dicoding.capstone.ayodolan.core.data.source.remote
 
+import android.util.Log
 import com.dicoding.capstone.ayodolan.core.data.source.remote.network.ApiConfig
 import com.dicoding.capstone.ayodolan.core.data.source.remote.response.DataResponse
 import com.dicoding.capstone.ayodolan.core.data.source.remote.response.ResultsItem
@@ -19,6 +20,7 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
             }
 
         private const val API_KEY = "5a015c1c464b9ace0f8ab1b8c5c3d328"
+        private const val TAG ="Remote Data Source"
     }
 
     fun getMoviePopular(callback: LoadDataCallback){
@@ -31,7 +33,7 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
             }
 
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e(TAG,"${t.message}")
             }
 
         })
@@ -47,7 +49,7 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
             }
 
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e(TAG,"${t.message}")
             }
 
         })
