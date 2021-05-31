@@ -22,21 +22,19 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         val movieResult = MutableLiveData<List<VacationEntity>>()
         remoteDataSource.getMoviePopular(object : RemoteDataSource.LoadDataCallback{
             override fun onAllDataReceived(dataResponse: List<ResultsItem>) {
-
-                val movieList = ArrayList<VacationEntity>()
-                for (movieRespons in dataResponse){
-                    val beachEntity = VacationEntity(
-                        movieRespons.id.toString(),
-                        movieRespons.title,
-                        movieRespons.originalTitle,
-                        movieRespons.overview,
-                        movieRespons.posterPath,
-                        movieRespons.voteAverage.toString()
-                    )
-                    movieList.add(beachEntity)
-                }
-                movieResult.postValue(movieList)
-
+                    val movieList = ArrayList<VacationEntity>()
+                    for (movieRespons in dataResponse){
+                        val vachEntity = VacationEntity(
+                            movieRespons.id.toString(),
+                            movieRespons.title,
+                            movieRespons.originalTitle,
+                            movieRespons.overview,
+                            movieRespons.posterPath,
+                            movieRespons.voteAverage.toString()
+                        )
+                        movieList.add(vachEntity)
+                    }
+                    movieResult.postValue(movieList)
             }
 
         })
@@ -48,25 +46,22 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         val movieResult = MutableLiveData<List<VacationEntity>>()
         remoteDataSource.getMovieTopRated(object : RemoteDataSource.LoadDataCallback{
             override fun onAllDataReceived(dataResponse: List<ResultsItem>) {
-
-                val movieList = ArrayList<VacationEntity>()
-                for (movieRespons in dataResponse){
-                    val beachEntity = VacationEntity(
-                        movieRespons.id.toString(),
-                        movieRespons.title,
-                        movieRespons.originalTitle,
-                        movieRespons.overview,
-                        movieRespons.posterPath,
-                        movieRespons.voteAverage.toString()
-                    )
-                    movieList.add(beachEntity)
-                }
-                movieResult.postValue(movieList)
-
+                    val movieList = ArrayList<VacationEntity>()
+                    for (movieRespons in dataResponse){
+                        val vachEntity = VacationEntity(
+                            movieRespons.id.toString(),
+                            movieRespons.title,
+                            movieRespons.originalTitle,
+                            movieRespons.overview,
+                            movieRespons.posterPath,
+                            movieRespons.voteAverage.toString()
+                        )
+                        movieList.add(vachEntity)
+                    }
+                    movieResult.postValue(movieList)
             }
 
         })
-
         return movieResult
     }
 }

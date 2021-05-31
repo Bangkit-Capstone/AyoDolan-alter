@@ -32,7 +32,7 @@ class ListActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(this,factory)[ListViewModel::class.java]
-        val pantaiAdapter = VacationAdapter()
+        val vacationAdapter = VacationAdapter()
         val extras = intent.extras
         if (extras != null){
             val type = extras.getString(EXTRA_ACTIVITY)
@@ -43,13 +43,14 @@ class ListActivity : AppCompatActivity() {
                         viewModel.getMoviePopuler().observe(this,{
                             stateLoading(false)
                             if (it.isEmpty()) Toast.makeText(this,"Terjadi Kesalahan", Toast.LENGTH_LONG).show()
-                            else pantaiAdapter.setVacation(it)
+                            else vacationAdapter.setVacation(it)
                         })
                     }
                     gunung ->{
                         message = gunung
                         viewModel.getMovieRate().observe(this,{
-                            pantaiAdapter.setVacation(it)
+                            stateLoading(false)
+                            vacationAdapter.setVacation(it)
                         })
                     }
                     taman -> message = taman
@@ -60,11 +61,12 @@ class ListActivity : AppCompatActivity() {
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        with(binding){
-            itemsList.layoutManager = LinearLayoutManager(this@ListActivity)
-            itemsList.setHasFixedSize(true)
-            itemsList.adapter = pantaiAdapter
-        }
+            with(binding){
+                itemsList.layoutManager = LinearLayoutManager(this@ListActivity)
+                itemsList.setHasFixedSize(true)
+                itemsList.adapter = vacationAdapter
+            }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
