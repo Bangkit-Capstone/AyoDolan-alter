@@ -1,5 +1,7 @@
 package com.dicoding.capstone.ayodolan.ui.list
 
+import android.content.Context
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -24,6 +26,18 @@ class ListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         stateLoading(true)
+        val connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        @Suppress("DEPRECATION") val networkInfo = connectionManager.activeNetworkInfo
+        @Suppress("DEPRECATION")
+        if (networkInfo != null && networkInfo.isConnected){
+            stateNotConnection(false)
+        }else{
+            stateNotConnection(true)
+            stateLoading(false)
+            binding.btnRetry.setOnClickListener {
+                recreate()
+            }
+        }
 
         val pantai = resources.getString(R.string.pantai)
         val gunung = resources.getString(R.string.gunung)
@@ -40,21 +54,27 @@ class ListActivity : AppCompatActivity() {
                 when(type){
                     pantai ->{
                         message = pantai
-                        viewModel.getMoviePopuler().observe(this,{
-                            stateLoading(false)
-                            if (it.isEmpty()) Toast.makeText(this,"Terjadi Kesalahan", Toast.LENGTH_LONG).show()
-                            else vacationAdapter.setVacation(it)
-                        })
+                            viewModel.getMoviePopuler().observe(this,{
+                                stateLoading(false)
+                                if (it.isEmpty()) Toast.makeText(this,"Terjadi Kesalahan", Toast.LENGTH_LONG).show()
+                                else vacationAdapter.setVacation(it)
+                            })
                     }
                     gunung ->{
                         message = gunung
-                        viewModel.getMovieRate().observe(this,{
-                            stateLoading(false)
-                            vacationAdapter.setVacation(it)
-                        })
+                            viewModel.getMovieRate().observe(this,{
+                                stateLoading(false)
+                                vacationAdapter.setVacation(it)
+                            })
                     }
-                    taman -> message = taman
-                    cagar -> message = cagar
+                    taman -> {
+                        message = taman
+
+                    }
+                    cagar -> {
+                        message = cagar
+
+                    }
                 }
                 supportActionBar?.title = message
             }
@@ -84,4 +104,15 @@ class ListActivity : AppCompatActivity() {
         if (state)binding.progressBar.visibility = View.VISIBLE
         else binding.progressBar.visibility = View.GONE
     }
+
+    private fun stateNotConnection(state: Boolean){
+        if (state){
+            binding.layoutNoConnect.visibility = View.VISIBLE
+            binding.itemsList.visibility = View.GONE
+        }else{
+            binding.layoutNoConnect.visibility = View.GONE
+            binding.itemsList.visibility = View.VISIBLE
+        }
+    }
+
 }

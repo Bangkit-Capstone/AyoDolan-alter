@@ -13,4 +13,8 @@
     <string name="review">Review</string>
     <string name="description">Description :</string>
     <string name="review_dtl">Review :</string>
+    <string name="no_connection">No Connection</string>
+    <string name="connection_lost">Connection Lost</string>
+    <string name="turn_on">Please Turn On Your Connection</string>
+    <string name="retry">Retry</string>
 </resources>
