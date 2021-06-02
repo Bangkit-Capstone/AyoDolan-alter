@@ -35,6 +35,7 @@ for record in data_list:
                         cat = "negatif"
                     temp_dict = {"username" : r.get("user_full_name"), "desc" : r.get("full_text"), "category" : cat}
                     temp["review"].append(temp_dict)
+                    if jumlah_baris == 30:break #limit 30
             ratings = (jumlah_star / jumlah_baris) * 100
             temp["ratings"] = ratings
             
