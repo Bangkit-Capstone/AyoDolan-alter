@@ -14,7 +14,7 @@ object ApiConfig {
 
     fun getApiService() : ApiService{
         val buildRetrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl("http://35.225.226.73/wisata/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okhttpClient())
             .build()

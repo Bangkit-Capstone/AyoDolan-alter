@@ -4,60 +4,36 @@ import com.google.gson.annotations.SerializedName
 
 data class DataResponse(
 
-	@field:SerializedName("page")
-	val page: Int,
-
-	@field:SerializedName("total_pages")
-	val totalPages: Int,
-
-	@field:SerializedName("results")
-	val results: List<ResultsItem>,
-
-	@field:SerializedName("total_results")
-	val totalResults: Int
+	@field:SerializedName("Wisata")
+	val wisata: List<WisataItem>
 )
 
-data class ResultsItem(
+data class ReviewItem(
 
-	@field:SerializedName("overview")
-	val overview: String,
+	@field:SerializedName("category")
+	val category: String,
 
-	@field:SerializedName("original_language")
-	val originalLanguage: String,
+	@field:SerializedName("desc")
+	val desc: String,
 
-	@field:SerializedName("original_title")
-	val originalTitle: String,
+	@field:SerializedName("username")
+	val username: String
+)
 
-	@field:SerializedName("video")
-	val video: Boolean,
+data class WisataItem(
 
-	@field:SerializedName("title")
-	val title: String,
+	@field:SerializedName("id_kategori")
+	val idKategori: Int,
 
-	@field:SerializedName("genre_ids")
-	val genreIds: List<Int>,
+	@field:SerializedName("ratings")
+	val ratings: Double,
 
-	@field:SerializedName("poster_path")
-	val posterPath: String,
-
-	@field:SerializedName("backdrop_path")
-	val backdropPath: String,
-
-	@field:SerializedName("release_date")
-	val releaseDate: String,
-
-	@field:SerializedName("popularity")
-	val popularity: Double,
-
-	@field:SerializedName("vote_average")
-	val voteAverage: Double,
+	@field:SerializedName("review")
+	val review: List<ReviewItem>,
 
 	@field:SerializedName("id")
 	val id: Int,
 
-	@field:SerializedName("adult")
-	val adult: Boolean,
-
-	@field:SerializedName("vote_count")
-	val voteCount: Int
+	@field:SerializedName("nama_tempat")
+	val namaTempat: String
 )

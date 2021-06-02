@@ -5,7 +5,7 @@
     <item
         android:id="@+id/cek"
         android:title="cek"
-        android:icon="@drawable/ic_share"
+        android:icon="@drawable/ic_baseline_text"
         app:showAsAction="ifRoom|collapseActionView"/>
 
 </menu>

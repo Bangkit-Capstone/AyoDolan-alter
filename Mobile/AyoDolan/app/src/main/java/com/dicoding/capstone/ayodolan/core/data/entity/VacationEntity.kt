@@ -7,9 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class VacationEntity (
     val id :String,
     val title :String,
-    val location :String,
-    val description :String,
     val image :String,
-    val rating :String,
-    var message : String? = null
+    val rating :Double
     ) : Parcelable

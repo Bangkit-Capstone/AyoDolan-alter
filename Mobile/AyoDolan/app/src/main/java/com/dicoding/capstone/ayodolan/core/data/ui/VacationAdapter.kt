@@ -26,8 +26,7 @@ class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
         fun bind(vacation : VacationEntity){
             with(binding){
                 itemTitle.text = vacation.title
-                itemLocation.text = vacation.location
-                textRate.text = vacation.rating
+                textRate.text = vacation.rating.toString()
                 starRate.rating = vacation.rating.toFloat()
 
                 Glide.with(itemView.context)

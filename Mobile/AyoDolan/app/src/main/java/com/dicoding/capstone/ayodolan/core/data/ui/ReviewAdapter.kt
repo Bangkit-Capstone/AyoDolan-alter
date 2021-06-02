@@ -24,8 +24,6 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ParkViewHolder>() {
         fun bind(review: ReviewEntity){
             with(binding){
                 textUsername.text = review.username
-                textStar.text = review.rating
-                starRateReview.rating = review.rating.toFloat()
                 textReview.text = review.review
             }
         }

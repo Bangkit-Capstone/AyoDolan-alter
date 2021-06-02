@@ -54,15 +54,15 @@ class ListActivity : AppCompatActivity() {
                 when(type){
                     pantai ->{
                         message = pantai
-                            viewModel.getMoviePopuler().observe(this,{
+                            viewModel.getPantai().observe(this,{
                                 stateLoading(false)
                                 if (it.isEmpty()) Toast.makeText(this,"Terjadi Kesalahan", Toast.LENGTH_LONG).show()
-                                else vacationAdapter.setVacation(it)
+                                vacationAdapter.setVacation(it)
                             })
                     }
                     gunung ->{
                         message = gunung
-                            viewModel.getMovieRate().observe(this,{
+                            viewModel.getKebun().observe(this,{
                                 stateLoading(false)
                                 vacationAdapter.setVacation(it)
                             })

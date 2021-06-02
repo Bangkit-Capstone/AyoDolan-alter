@@ -40,15 +40,13 @@ class DetailActivity : AppCompatActivity() {
 
         with(binding){
             content.starRating.rating = data.rating.toFloat()
-            content.rating.text = data.rating
-            content.textLocation.text = data.location
-            content.textDesc.text = data.description
+            content.rating.text = data.rating.toString()
 
             share.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TITLE, data.title)
-                    putExtra(Intent.EXTRA_TEXT,"Rating:${data.rating} \n ${data.description}")
+                    putExtra(Intent.EXTRA_TEXT,"Rating:${data.rating} ")
                     type = "text/plain"
                 }
                 startActivity(sendIntent)

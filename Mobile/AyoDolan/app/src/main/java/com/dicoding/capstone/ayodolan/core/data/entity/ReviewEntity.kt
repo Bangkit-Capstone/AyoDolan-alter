@@ -5,8 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ReviewEntity (
-    val id :String,
     val username :String,
     val review :String,
-    val rating :String
+    val category :String
         ) : Parcelable

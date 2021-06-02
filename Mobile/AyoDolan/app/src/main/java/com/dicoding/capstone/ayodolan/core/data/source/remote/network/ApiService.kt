@@ -7,23 +7,19 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("movie/top_rated")
-    fun getMoviesRate(
-        @Query("api_key") apiKey: String
+    @GET("category/1")
+    fun getPantai(
     ): Call<DataResponse>
 
-    @GET("movie/popular")
-    fun getMoviePopular(
-        @Query("api_key") apiKey: String
+    @GET("category/2")
+    fun getGunung(
     ): Call<DataResponse>
 
-    @GET("movie/now_playing")
-    fun getMovieNowPlaying(
-        @Query("api_key") apiKey: String
+    @GET("category/3")
+    fun getKebun(
     ): Call<DataResponse>
 
-    @GET("movie/upcoming")
-    fun getMovieUpComing(
-        @Query("api_key") apiKey: String
+    @GET("category/4")
+    fun getCagarBudaya(
     ): Call<DataResponse>
 }
