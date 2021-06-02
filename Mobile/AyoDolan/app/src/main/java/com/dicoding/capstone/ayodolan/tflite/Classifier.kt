@@ -1,4 +1,4 @@
-package com.dicoding.capstone.ayodolan
+package com.dicoding.capstone.ayodolan.tflite
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
@@ -13,17 +13,14 @@ class Classifier(context: Context, jsonFilename: String , inputMaxLen : Int ) {
 
     private var context : Context? = context
 
-    // Filename for the exported vocab ( .json )
     private var filename : String? = jsonFilename
 
-    // Max length of the input sequence for the given model.
     private var maxlen : Int = inputMaxLen
 
     private var vocabData : HashMap< String , Int >? = null
 
-    // Load the contents of the vocab ( see assets/word_dict.json )
     private fun loadJSONFromAsset(filename : String? ): String? {
-        var json: String?
+        val json: String?
         try {
             val inputStream = context!!.assets.open(filename.toString())
             val size = inputStream.available()
@@ -39,20 +36,18 @@ class Classifier(context: Context, jsonFilename: String , inputMaxLen : Int ) {
         return json
     }
 
-    fun processVocab( callback: VocabCallback ) {
+    fun processVocab( callback: VocabCallback) {
         CoroutineScope( Dispatchers.Main ).launch {
             loadVocab( callback , loadJSONFromAsset( filename )!! )
         }
     }
 
-    // Tokenize the given sentence
     fun tokenize ( message : String ): IntArray {
         val parts : List<String> = message.split(" " )
         val tokenizedMessage = ArrayList<Int>()
         for ( part in parts ) {
             if (part.trim() != ""){
-                var index : Int? = 0
-                index = if ( vocabData!![part] == null ) {
+                val index: Int? = if ( vocabData!![part] == null ) {
                     0
                 } else{
                     vocabData!![part]
@@ -63,29 +58,26 @@ class Classifier(context: Context, jsonFilename: String , inputMaxLen : Int ) {
         return tokenizedMessage.toIntArray()
     }
 
-    // Pad the given sequence to maxlen with zeros.
     fun padSequence ( sequence : IntArray ) : IntArray {
         val maxlen = this.maxlen
-        if ( sequence.size > maxlen ) {
-//            return sequence.sliceArray( 0..maxlen )
-            return sequence.sliceArray( (sequence.size-maxlen)..sequence.size )
-        }
-        else if ( sequence.size < maxlen ) {
-            val array = ArrayList<Int>()
-//            array.addAll( sequence.asList() )
-//            for ( i in array.size until maxlen ){
-            for ( i in array.size until maxlen-sequence.size ){
-                array.add(0)
+        when {
+            sequence.size > maxlen -> {
+                return sequence.sliceArray( (sequence.size-maxlen)..sequence.size )
             }
+            sequence.size < maxlen -> {
+                val array = ArrayList<Int>()
+                for ( i in array.size until maxlen-sequence.size ){
+                    array.add(0)
+                }
 
-            array.addAll( sequence.asList() )
-            return array.toIntArray()
-        }
-        else{
-            return sequence
+                array.addAll( sequence.asList() )
+                return array.toIntArray()
+            }
+            else -> {
+                return sequence
+            }
         }
     }
-
 
     interface VocabCallback {
         fun onVocabProcessed()

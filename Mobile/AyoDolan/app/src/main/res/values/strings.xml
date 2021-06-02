@@ -17,4 +17,12 @@
     <string name="connection_lost">Connection Lost</string>
     <string name="turn_on">Please Turn On Your Connection</string>
     <string name="retry">Retry</string>
+    <string name="title_ml">"Model Implementation"</string>
+    <string name="positif">"Positif"</string>
+    <string name="negatif">"Negatif"</string>
+    <string name="error">"Please Enter a Message"</string>
+    <string name="try_your_own_text_with_our_model">"Try Your Own Text"</string>
+    <string name="enter">Enter</string>
+    <string name="hello">Category</string>
+    <string name="input_text">Input Text</string>
 </resources>

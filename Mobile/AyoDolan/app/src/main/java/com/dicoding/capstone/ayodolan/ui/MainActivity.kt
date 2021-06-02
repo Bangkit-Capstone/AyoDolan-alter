@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.dicoding.capstone.ayodolan.R
-import com.dicoding.capstone.ayodolan.TryImplementModelActivity
+import com.dicoding.capstone.ayodolan.tflite.TryImplementModelActivity
 import com.dicoding.capstone.ayodolan.databinding.ActivityMainBinding
 import com.dicoding.capstone.ayodolan.ui.list.ListActivity
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.cek -> {
-                val moveIntent = Intent(this,TryImplementModelActivity::class.java)
+                val moveIntent = Intent(this, TryImplementModelActivity::class.java)
                 startActivity(moveIntent)
             }
         }

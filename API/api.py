@@ -9,26 +9,35 @@ data_list = data.to_dict('records')
 #print(type(data_list))
 
 #ambil semua nama tempat
-daftar_tempat = [{"id" : 0, "nama_tempat" : "", "id_kategori" : 0, "ratings" : 0}];
+daftar_tempat = [{"id" : 0, "nama_tempat" : "", "id_kategori" : 0, "review" : []}];
 id = 1;
 for record in data_list:
     for i in range(len(daftar_tempat)):
         if daftar_tempat[i].get("nama_tempat") == record.get("nama_tempat"):
             break
         if(i == len(daftar_tempat) - 1):
-            temp = {"id": id, "nama_tempat": record.get("nama_tempat"), "id_kategori": record.get("id_kategori"), "ratings": 0}
+            temp = {"id": id, "nama_tempat": record.get("nama_tempat"), "id_kategori": record.get("id_kategori"),  "review" : []}
             id = id + 1
 
             #memperoleh ratings
             jumlah_star = 0;
             jumlah_baris = 0;
+            temp_dict = {}
             for r in data_list:
                 if r.get("nama_tempat") == temp.get("nama_tempat"):
                     jumlah_baris = jumlah_baris + 1
                     if int(r.get("star")) == 1:
                         jumlah_star = jumlah_star + 1
+                    cat = ""
+                    if r.get("star") == 1:
+                        cat = "positif"
+                    else:
+                        cat = "negatif"
+                    temp_dict = {"username" : r.get("user_full_name"), "desc" : r.get("full_text"), "category" : cat}
+                    temp["review"].append(temp_dict)
             ratings = (jumlah_star / jumlah_baris) * 100
             temp["ratings"] = ratings
+            
             daftar_tempat.append(temp)
 daftar_tempat.pop(0)
 
@@ -66,6 +75,7 @@ def get_cat(category):
 
 @app.route('/wisata/<int:id>', methods=['GET'])
 def get_id(id):
+    id = id-1
     return jsonify({'Wisata': daftar_tempat[id]})
 
 if __name__ == "__main__":
