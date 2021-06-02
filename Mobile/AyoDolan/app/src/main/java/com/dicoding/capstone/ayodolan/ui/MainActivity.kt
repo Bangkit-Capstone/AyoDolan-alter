@@ -3,7 +3,10 @@ package com.dicoding.capstone.ayodolan.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.dicoding.capstone.ayodolan.R
+import com.dicoding.capstone.ayodolan.TryImplementModelActivity
 import com.dicoding.capstone.ayodolan.databinding.ActivityMainBinding
 import com.dicoding.capstone.ayodolan.ui.list.ListActivity
 
@@ -36,5 +39,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(moveActivity)
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.cek -> {
+                val moveIntent = Intent(this,TryImplementModelActivity::class.java)
+                startActivity(moveIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
