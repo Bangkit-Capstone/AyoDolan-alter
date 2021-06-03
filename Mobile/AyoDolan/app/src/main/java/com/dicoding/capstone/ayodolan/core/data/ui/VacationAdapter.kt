@@ -13,12 +13,12 @@ import com.dicoding.capstone.ayodolan.ui.DetailActivity
 
 class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
 
-  private var listBeach = ArrayList<VacationEntity>()
+  private var listVacation = ArrayList<VacationEntity>()
 
     fun setVacation(vacations : List<VacationEntity>?){
-        if (vacations == null) return this.listBeach.clear()
-        this.listBeach.clear()
-        this.listBeach.addAll(vacations)
+        if (vacations == null) return this.listVacation.clear()
+        this.listVacation.clear()
+        this.listVacation.addAll(vacations)
         notifyDataSetChanged()
     }
 
@@ -36,6 +36,7 @@ class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_KEY,vacation)
+                    intent.putExtra(DetailActivity.POSITION,adapterPosition)
                     itemView.context.startActivity(intent)
                 }
             }
@@ -49,12 +50,12 @@ class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BeachViewHolder, position: Int) {
-        val beach = listBeach[position]
+        val beach = listVacation[position]
         holder.bind(beach)
     }
 
     override fun getItemCount(): Int {
-        return listBeach.size
+        return listVacation.size
     }
 
 }

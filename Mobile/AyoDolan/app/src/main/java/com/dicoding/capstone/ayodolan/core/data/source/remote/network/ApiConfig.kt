@@ -9,6 +9,7 @@ object ApiConfig {
     private fun okhttpClient(): OkHttpClient{
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .retryOnConnectionFailure(false)
             .build()
     }
 

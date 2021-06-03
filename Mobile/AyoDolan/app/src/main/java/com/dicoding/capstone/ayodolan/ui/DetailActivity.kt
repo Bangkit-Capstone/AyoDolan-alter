@@ -6,18 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import androidx.palette.graphics.Palette
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.dicoding.capstone.ayodolan.MainViewModel
 import com.dicoding.capstone.ayodolan.R
 import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
+import com.dicoding.capstone.ayodolan.core.data.ui.ReviewAdapter
+import com.dicoding.capstone.ayodolan.core.data.ui.VacationAdapter
 import com.dicoding.capstone.ayodolan.databinding.ActivityDetailBinding
+import com.dicoding.capstone.ayodolan.ui.list.ListActivity
 
 class DetailActivity : AppCompatActivity() {
     companion object{
         const val EXTRA_KEY = "extra_key"
+        const val POSITION = "position"
     }
     private lateinit var binding : ActivityDetailBinding
+    private lateinit var mainViewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -28,7 +38,26 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val vacationAdapter = ReviewAdapter()
+
         showDetail(data)
+        val extras = intent.extras
+        if (extras != null){
+            val position = extras.getInt(POSITION,0)
+            mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+            mainViewModel.getPantai().observe(this,{
+                vacationAdapter.setReview(it[position].review)
+            })
+        }
+
+
+
+        with(binding){
+            content.rvReview.layoutManager = LinearLayoutManager(this@DetailActivity)
+            content.rvReview.setHasFixedSize(true)
+            content.rvReview.adapter = vacationAdapter
+            content.rvReview.addItemDecoration(DividerItemDecoration(this@DetailActivity,LinearLayoutManager.VERTICAL))
+        }
 
     }
 

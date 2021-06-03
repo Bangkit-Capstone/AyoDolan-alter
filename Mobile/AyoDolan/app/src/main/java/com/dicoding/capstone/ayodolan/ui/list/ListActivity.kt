@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.capstone.ayodolan.MainViewModel
 import com.dicoding.capstone.ayodolan.R
 import com.dicoding.capstone.ayodolan.ViewModelFactory
 import com.dicoding.capstone.ayodolan.core.data.ui.VacationAdapter
@@ -17,6 +17,7 @@ import com.dicoding.capstone.ayodolan.databinding.ActivityListBinding
 class ListActivity : AppCompatActivity() {
     private lateinit var binding : ActivityListBinding
     private lateinit var message : String
+    private lateinit var mainViewModel: MainViewModel
     companion object{
         const val EXTRA_ACTIVITY = "extra_activty"
     }
@@ -46,6 +47,7 @@ class ListActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(this,factory)[ListViewModel::class.java]
+        mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         val vacationAdapter = VacationAdapter()
         val extras = intent.extras
         if (extras != null){
@@ -54,25 +56,32 @@ class ListActivity : AppCompatActivity() {
                 when(type){
                     pantai ->{
                         message = pantai
-                            viewModel.getPantai().observe(this,{
+                            mainViewModel.getPantai().observe(this,{
                                 stateLoading(false)
-                                if (it.isEmpty()) Toast.makeText(this,"Terjadi Kesalahan", Toast.LENGTH_LONG).show()
                                 vacationAdapter.setVacation(it)
                             })
                     }
                     gunung ->{
                         message = gunung
-                            viewModel.getKebun().observe(this,{
+                            /*mainViewModel.getGunung().observe(this,{
                                 stateLoading(false)
                                 vacationAdapter.setVacation(it)
-                            })
+                            })*/
                     }
                     taman -> {
                         message = taman
+                        /*mainViewModel.getKebun().observe(this,{
+                            stateLoading(false)
+                            vacationAdapter.setVacation(it)
+                        })*/
 
                     }
                     cagar -> {
                         message = cagar
+                        /*mainViewModel.getCagar().observe(this,{
+                            stateLoading(false)
+                            vacationAdapter.setVacation(it)
+                        })*/
 
                     }
                 }

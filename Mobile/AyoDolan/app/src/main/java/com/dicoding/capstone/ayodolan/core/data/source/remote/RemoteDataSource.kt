@@ -3,6 +3,8 @@ package com.dicoding.capstone.ayodolan.core.data.source.remote
 import android.util.Log
 import com.dicoding.capstone.ayodolan.core.data.source.remote.network.ApiConfig
 import com.dicoding.capstone.ayodolan.core.data.source.remote.response.DataResponse
+import com.dicoding.capstone.ayodolan.core.data.source.remote.response.DataResponse2
+import com.dicoding.capstone.ayodolan.core.data.source.remote.response.ResultsItem
 import com.dicoding.capstone.ayodolan.core.data.source.remote.response.WisataItem
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,14 +31,13 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
                     response.body()?.wisata?.let { callback.onAllDataReceived(it) }
                 }
             }
-
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 Log.e(TAG,"${t.message}")
             }
         })
     }
 
-    fun getKebun(callback: LoadDataCallback){
+    /*fun getKebun(callback: LoadDataCallback){
         val client = apiConfig.getApiService().getKebun()
         client.enqueue(object : Callback<DataResponse>{
             override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
@@ -50,7 +51,7 @@ class RemoteDataSource private constructor(private val apiConfig: ApiConfig){
 
         })
     }
-
+*/
     interface LoadDataCallback{
         fun onAllDataReceived(dataResponse: List<WisataItem>)
     }

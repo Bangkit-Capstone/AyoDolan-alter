@@ -8,5 +8,6 @@ data class VacationEntity (
     val id :String,
     val title :String,
     val image :String,
-    val rating :Double
+    val rating :String,
+    val review: List<ReviewEntity>
     ) : Parcelable

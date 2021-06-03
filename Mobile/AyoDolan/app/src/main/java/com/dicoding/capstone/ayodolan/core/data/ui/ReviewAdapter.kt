@@ -14,7 +14,7 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ParkViewHolder>() {
 
     private var listPark = ArrayList<ReviewEntity>()
 
-    fun setPark(review : List<ReviewEntity>?){
+    fun setReview(review : List<ReviewEntity>?){
         if (review == null) return this.listPark.clear()
         this.listPark.clear()
         this.listPark.addAll(review)
@@ -24,7 +24,8 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ParkViewHolder>() {
         fun bind(review: ReviewEntity){
             with(binding){
                 textUsername.text = review.username
-                textReview.text = review.review
+                textReview.text = "\"${review.review}\""
+                textStar.text = "(${review.category})"
             }
         }
 

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DataResponse(
 
-	@field:SerializedName("Wisata")
+	@field:SerializedName("wisata")
 	val wisata: List<WisataItem>
 )
 
