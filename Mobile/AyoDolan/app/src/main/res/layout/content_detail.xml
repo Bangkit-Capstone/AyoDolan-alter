@@ -22,6 +22,7 @@
             android:text="@string/_5_00"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:textColor="?attr/textColor"
             app:layout_constraintStart_toEndOf="@+id/star_rating"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +51,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/review_dtl"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?attr/textColor"
             app:layout_constraintLeft_toLeftOf="parent"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_review"

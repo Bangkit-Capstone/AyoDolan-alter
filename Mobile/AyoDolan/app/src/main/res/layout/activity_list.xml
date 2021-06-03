@@ -38,14 +38,14 @@
             android:textAllCaps="true"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/blue_200"
+            android:textColor="?attr/textColor"
             android:fontFamily="sans-serif-light"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/turn_on"
-            android:textColor="@color/black"
+            android:textColor="?attr/textColor"
             android:textSize="12sp"
             android:fontFamily="sans-serif"/>
         <Button

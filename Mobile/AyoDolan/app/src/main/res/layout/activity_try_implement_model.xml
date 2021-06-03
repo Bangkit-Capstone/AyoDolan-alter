@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/try_your_own_text_with_our_model"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="?attr/textColor"
         android:textSize="16sp"
         android:fontFamily="sans-serif"
         android:layout_marginTop="10dp"
@@ -33,7 +33,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +53,7 @@
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:text="@string/hello"
-        android:textColor="@color/black"
+        android:textColor="?attr/textColor"
         app:layout_constraintTop_toBottomOf="@+id/btn_go"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
