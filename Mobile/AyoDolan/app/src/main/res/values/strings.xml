@@ -27,4 +27,5 @@
     <string name="input_text">Input Text</string>
     <string name="text_review">"%s"</string>
     <string name="text_star">(%s)</string>
+    <string name="cek">cek</string>
 </resources>
