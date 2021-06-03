@@ -1,24 +1,17 @@
-package com.dicoding.capstone.ayodolan.ui
+package com.dicoding.capstone.ayodolan.ui.detail
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
-import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.capstone.ayodolan.MainViewModel
 import com.dicoding.capstone.ayodolan.R
 import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
 import com.dicoding.capstone.ayodolan.core.data.ui.ReviewAdapter
-import com.dicoding.capstone.ayodolan.core.data.ui.VacationAdapter
 import com.dicoding.capstone.ayodolan.databinding.ActivityDetailBinding
-import com.dicoding.capstone.ayodolan.ui.list.ListActivity
 
 class DetailActivity : AppCompatActivity() {
     companion object{
@@ -26,7 +19,6 @@ class DetailActivity : AppCompatActivity() {
         const val POSITION = "position"
     }
     private lateinit var binding : ActivityDetailBinding
-    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +33,8 @@ class DetailActivity : AppCompatActivity() {
         val vacationAdapter = ReviewAdapter()
 
         showDetail(data)
-        val extras = intent.extras
-        if (extras != null){
-            val position = extras.getInt(POSITION,0)
-            mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
-            mainViewModel.getPantai().observe(this,{
-                vacationAdapter.setReview(it[position].review)
-            })
-        }
 
-
+        vacationAdapter.setReview(data.review)
 
         with(binding){
             content.rvReview.layoutManager = LinearLayoutManager(this@DetailActivity)
@@ -61,21 +45,21 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    fun showDetail(data :VacationEntity){
+    private fun showDetail(data :VacationEntity){
         Glide.with(this)
-            .load("https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.image}")
+            .load(data.image)
             .apply(RequestOptions.placeholderOf(R.drawable.ic_baseline_refresh).error(R.drawable.ic_baseline_broken_image_24))
             .into(binding.imageDetail)
 
         with(binding){
-            content.starRating.rating = data.rating.toFloat()
-            content.rating.text = data.rating.toString()
+            content.starRating.rating = (data.rating.toFloat() * 5) / 100
+            content.rating.text = data.rating
 
             share.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TITLE, data.title)
-                    putExtra(Intent.EXTRA_TEXT,"Rating:${data.rating} ")
+                    putExtra(Intent.EXTRA_TEXT,"${data.title}\nRating:${data.rating} ")
                     type = "text/plain"
                 }
                 startActivity(sendIntent)
@@ -95,4 +79,5 @@ class DetailActivity : AppCompatActivity() {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+
 }

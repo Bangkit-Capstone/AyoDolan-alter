@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.capstone.ayodolan.MainViewModel
+import com.dicoding.capstone.ayodolan.core.data.source.loopj.MainViewModel
 import com.dicoding.capstone.ayodolan.R
-import com.dicoding.capstone.ayodolan.ViewModelFactory
 import com.dicoding.capstone.ayodolan.core.data.ui.VacationAdapter
 import com.dicoding.capstone.ayodolan.databinding.ActivityListBinding
 
@@ -45,9 +45,8 @@ class ListActivity : AppCompatActivity() {
         val taman = resources.getString(R.string.taman)
         val cagar = resources.getString(R.string.cagar_budaya)
 
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this,factory)[ListViewModel::class.java]
-        mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
         val vacationAdapter = VacationAdapter()
         val extras = intent.extras
         if (extras != null){
@@ -63,28 +62,31 @@ class ListActivity : AppCompatActivity() {
                     }
                     gunung ->{
                         message = gunung
-                            /*mainViewModel.getGunung().observe(this,{
+                            mainViewModel.getGunung().observe(this,{
                                 stateLoading(false)
                                 vacationAdapter.setVacation(it)
-                            })*/
+                            })
                     }
                     taman -> {
                         message = taman
-                        /*mainViewModel.getKebun().observe(this,{
+                        mainViewModel.getTaman().observe(this,{
                             stateLoading(false)
                             vacationAdapter.setVacation(it)
-                        })*/
+                        })
 
                     }
                     cagar -> {
                         message = cagar
-                        /*mainViewModel.getCagar().observe(this,{
+                        mainViewModel.getCagar().observe(this,{
                             stateLoading(false)
                             vacationAdapter.setVacation(it)
-                        })*/
+                        })
 
                     }
                 }
+                mainViewModel.getError().observe(this,{
+                    if (it != null) Toast.makeText(this, it,Toast.LENGTH_LONG).show()
+                })
                 supportActionBar?.title = message
             }
         }

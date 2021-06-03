@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.capstone.ayodolan.R
 import com.dicoding.capstone.ayodolan.core.data.entity.VacationEntity
 import com.dicoding.capstone.ayodolan.databinding.ItemListBinding
-import com.dicoding.capstone.ayodolan.ui.DetailActivity
+import com.dicoding.capstone.ayodolan.ui.detail.DetailActivity
 
 class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
 
@@ -26,11 +26,11 @@ class VacationAdapter :RecyclerView.Adapter<VacationAdapter.BeachViewHolder>() {
         fun bind(vacation : VacationEntity){
             with(binding){
                 itemTitle.text = vacation.title
-                textRate.text = vacation.rating.toString()
-                starRate.rating = vacation.rating.toFloat()
+                textRate.text = vacation.rating.toFloat().toString()
+                starRate.rating = (vacation.rating.toFloat() * 5) / 100
 
                 Glide.with(itemView.context)
-                    .load("https://www.themoviedb.org/t/p/w600_and_h900_bestv2${vacation.image}")
+                    .load(vacation.image)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_baseline_refresh).error(R.drawable.ic_baseline_broken_image_24))
                     .into(itemImage)
                 itemView.setOnClickListener {

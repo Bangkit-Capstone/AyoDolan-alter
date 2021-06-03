@@ -25,4 +25,6 @@
     <string name="enter">Enter</string>
     <string name="hello">Category</string>
     <string name="input_text">Input Text</string>
+    <string name="text_review">"%s"</string>
+    <string name="text_star">(%s)</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.dicoding.capstone.ayodolan.ui
+package com.dicoding.capstone.ayodolan.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -3,11 +3,8 @@ package com.dicoding.capstone.ayodolan.core.data.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.dicoding.capstone.ayodolan.R
 import com.dicoding.capstone.ayodolan.core.data.entity.ReviewEntity
-import com.dicoding.capstone.ayodolan.databinding.ItemListBinding
 import com.dicoding.capstone.ayodolan.databinding.ItemReviewBinding
 
 class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ParkViewHolder>() {
@@ -24,8 +21,8 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ParkViewHolder>() {
         fun bind(review: ReviewEntity){
             with(binding){
                 textUsername.text = review.username
-                textReview.text = "\"${review.review}\""
-                textStar.text = "(${review.category})"
+                textReview.text = itemView.context.resources.getString(R.string.text_review,review.review)
+                textStar.text = itemView.context.resources.getString(R.string.text_star,review.category)
             }
         }
 
