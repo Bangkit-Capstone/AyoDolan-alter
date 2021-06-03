@@ -53,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
 
         with(binding){
             content.starRating.rating = (data.rating.toFloat() * 5) / 100
-            content.rating.text = data.rating
+            content.rating.text = data.rating.toFloat().toString()
 
             share.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
